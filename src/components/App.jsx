@@ -12,26 +12,22 @@ export const App = () => {
   const [total, setTotal] = useState(0);
 
   const onLeaveFeedback = feedbackType => {
-    if (feedbackType === good) {
+    if (feedbackType === 'good') {
       setGood(prevGood => prevGood + 1);
-    } else if (feedbackType === neutral) {
+    } else if (feedbackType === 'neutral') {
       setNeutral(prevNeutral => prevNeutral + 1);
-    } else if (feedbackType === bad) {
+    } else if (feedbackType === 'bad') {
       setBad(prevBad => prevBad + 1);
     }
     setTotal(prevTotal => prevTotal + 1);
   };
-  // return total;
 
   const countPositiveFeedbackPercentage = () => {
-    let positivePercent = total !== 0 ? Math.round((good / total) * 100) : 0;
-    return positivePercent;
+    return total !== 0 ? Math.round((good / total) * 100) : 0;
   };
 
-  // const feedbacks = [good, neutral, bad];
-  const totalFeedback = total;
-  const options = [good, neutral, bad];
-  const positivePercent = countPositiveFeedbackPercentage(options, total);
+  const positivePercent = countPositiveFeedbackPercentage();
+  const options = ['good', 'neutral', 'bad'];
 
   return (
     <Container>
@@ -44,7 +40,7 @@ export const App = () => {
             good={good}
             neutral={neutral}
             bad={bad}
-            total={totalFeedback}
+            total={total}
             positivePercent={positivePercent}
           />
         </Section>
